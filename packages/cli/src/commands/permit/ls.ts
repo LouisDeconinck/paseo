@@ -18,7 +18,7 @@ export const permitLsSchema: OutputSchema<PermissionListItem> = {
   idField: "id",
   columns: [
     { header: "AGENT", field: "agentShortId", width: 12 },
-    { header: "REQ_ID", field: "id", width: 12 },
+    { header: "REQ_ID", field: (item) => item.id.slice(0, 8), width: 12 },
     { header: "TOOL", field: "name", width: 20 },
     { header: "DESCRIPTION", field: "description", width: 50 },
   ],
@@ -30,7 +30,7 @@ function toListItem(
   permission: AgentPermissionRequest,
 ): PermissionListItem {
   return {
-    id: permission.id.slice(0, 8),
+    id: permission.id,
     agentId: agent.id,
     agentShortId: agent.id.slice(0, 7),
     name: permission.name,
