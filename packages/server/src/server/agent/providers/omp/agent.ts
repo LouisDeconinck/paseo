@@ -1182,6 +1182,10 @@ export class OmpAgentSession implements AgentSession {
     }
   }
 
+  async forceInterrupt(): Promise<void> {
+    await this.runtimeSession.forceInterrupt?.();
+  }
+
   async revertConversation(input: { messageId: string }): Promise<void> {
     if (this.activeTurnId) {
       throw new Error("Cannot rewind the OMP conversation while a turn is active");

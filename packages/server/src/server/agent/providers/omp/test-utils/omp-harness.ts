@@ -475,6 +475,10 @@ export class OmpHarness {
     await this.requireSession().interrupt();
   }
 
+  async forceInterrupt(): Promise<void> {
+    await this.requireSession().forceInterrupt();
+  }
+
   wasAborted(): boolean {
     return this.omp.latestSession().abortRequested;
   }
